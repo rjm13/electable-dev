@@ -14,8 +14,9 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import ElectionScreen from '../screens/ElectionScreen';
+import VideoFeed from '../screens/VideoFeedScreen';
+import NewsFeed from '../screens/NewsFeedScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -58,50 +59,43 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Elections"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerShown: false,
+        tabBarStyle: {
+          elevation: 0,   // for Android
+          shadowOffset: {
+              width: 0, height: 0 // for iOS
+          },
+          borderTopWidth: 0
+      }
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+        name="Elections"
+        component={ElectionScreen}
+        options={({ navigation }: RootTabScreenProps<'Elections'>) => ({
+          title: 'Elections',
+          tabBarIcon: ({ color }) => <FontAwesome name="check-square-o" color={color} size={25} />,
+          
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="VideoFeed"
+        component={VideoFeed}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          tabBarIcon: ({ color }) => <FontAwesome style={{marginTop: -10}} name="coffee" color={color} size={36}/>,
+        }}
+      />
+      <BottomTab.Screen
+        name="NewsFeed"
+        component={NewsFeed}
+        options={{
+          title: 'News',
+          tabBarIcon: ({ color }) => <FontAwesome name="newspaper-o" color={color} size={25}/>,
         }}
       />
     </BottomTab.Navigator>
   );
-}
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
