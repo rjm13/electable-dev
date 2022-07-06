@@ -1,17 +1,90 @@
-import { StyleSheet } from 'react-native';
+import {useState} from 'react';
 
-import EditScreenInfo from '../components/EditScreenInfo';
+import { 
+  StyleSheet, 
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
+
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { Text, View } from '../components/Themed';
 
-export default function TabTwoScreen() {
+const VideoFeed = () => {
+
+  const SCREEN_HEIGHT = Dimensions.get('window').height
+
+  const [optionsVis, setOptionsVis] = useState(false);
+
+  const [didAgree, setDidAgree] = useState(false);
+
+  const [didNotAgree, setDidNotAgree] = useState(false);
+
+  const Agree = () => {
+    if (didAgree === true) {
+      setDidAgree(false);
+    }
+    if (didAgree === false) {
+      setDidAgree(true);
+      setDidNotAgree(false);
+    }
+  }
+
+  const NotAgree = () => {
+    if (didNotAgree === true) {
+      setDidNotAgree(false);
+    }
+    if (didNotAgree === false) {
+      setDidNotAgree(true);
+      setDidAgree(false);
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+
+      {optionsVis === true ? (
+        <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
+          <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: '#141414a5', paddingTop: 30, width: '100%', height: SCREEN_HEIGHT}}>
+            <View style={{justifyContent: 'space-around', flexDirection: 'row', backgroundColor: 'transparent', width: '100%'}}>
+              
+              <TouchableOpacity onPress={NotAgree}>
+                <FontAwesome name='thumbs-down' color={didNotAgree === true ? '#000' : '#fff'} size={30} style={{padding: 20, borderWidth: 0.5, borderColor: didNotAgree === true ? 'green' : '#fff', borderRadius: 15, backgroundColor: didNotAgree === true ? 'green' : 'transparent'}}/>
+              </TouchableOpacity>
+              
+              <TouchableOpacity onPress={Agree}>
+                <FontAwesome name='thumbs-up' color={didAgree === true ? '#000' : '#fff'} size={30} style={{padding: 20, borderWidth: 0.5, borderColor: didAgree === true ? 'green' : '#fff', borderRadius: 15, backgroundColor: didAgree === true ? 'green' : 'transparent'}}/>
+              </TouchableOpacity>
+
+            </View>
+            
+          </View>
+        </TouchableWithoutFeedback>
+      ) : null}
+      
+
+      <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
+        <View style={{backgroundColor: '#141414a5', position: 'absolute', top: 0, paddingTop: 30, width: '100%'}}>
+          <Text style={{color: '#fff', padding: 10, textAlign: 'center'}}>
+            How do you feel about nationalizing gasoline refinement to bring prices down?
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      
+
+      <View style={{backgroundColor: '#141414a5', position: 'absolute', bottom: 0, width: '100%', padding: 10}}>
+        <Text style={{color: '#fff'}}>
+          Politician Name
+        </Text>
+        <Text style={{color: '#fff'}}>
+          Political Position
+        </Text>
+      </View>
+
     </View>
-  );
+  )
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -29,3 +102,5 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+
+export default VideoFeed;
