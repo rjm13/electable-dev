@@ -46,7 +46,10 @@ const VideoFeed = () => {
       {optionsVis === true ? (
         <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
           <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: '#141414a5', paddingTop: 30, width: '100%', height: SCREEN_HEIGHT}}>
-            <View style={{justifyContent: 'space-around', flexDirection: 'row', backgroundColor: 'transparent', width: '100%'}}>
+            
+            <View />
+
+            <View style={{justifyContent: 'space-around', flexDirection: 'row', backgroundColor: 'transparent', width: '100%',}}>
               
               <TouchableOpacity onPress={NotAgree}>
                 <FontAwesome name='thumbs-down' color={didNotAgree === true ? '#000' : '#fff'} size={30} style={{padding: 20, borderWidth: 0.5, borderColor: didNotAgree === true ? 'green' : '#fff', borderRadius: 15, backgroundColor: didNotAgree === true ? 'green' : 'transparent'}}/>
@@ -62,11 +65,25 @@ const VideoFeed = () => {
         </TouchableWithoutFeedback>
       ) : null}
       
+      
 
       <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
-        <View style={{backgroundColor: '#141414a5', position: 'absolute', top: 0, paddingTop: 30, width: '100%'}}>
-          <Text style={{color: '#fff', padding: 10, textAlign: 'center'}}>
-            How do you feel about nationalizing gasoline refinement to bring prices down?
+        <View style={{flexDirection: 'row', backgroundColor: '#141414a5', position: 'absolute', top: 0, paddingTop: 40, width: '100%'}}>
+        <View style={{backgroundColor: 'transparent', marginLeft: 10}}>
+              <TouchableWithoutFeedback>
+                <FontAwesome 
+                  name='globe'
+                  size={20}
+                  color='white'
+                  style={{
+                    padding: 10,
+                    backgroundColor: 'transparent',
+                  }}
+                  />
+                </TouchableWithoutFeedback>
+            </View>
+          <Text style={{color: '#fff', paddingHorizontal: 10, paddingBottom: 10, width: '85%'}}>
+            How do you feel about nationalizing gasoline refinement to bring prices down? What happens if this is three lines?
           </Text>
         </View>
       </TouchableWithoutFeedback>
