@@ -70,7 +70,7 @@ const VideoFeed = ({navigation}:any) => {
       <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
         <View style={{flexDirection: 'row', backgroundColor: '#141414a5', position: 'absolute', top: 0, paddingTop: 40, width: '100%'}}>
         <View style={{backgroundColor: 'transparent', marginLeft: 10}}>
-              <TouchableWithoutFeedback onPress={() => navigation.navigate('QuestionsScreen')}>
+              <TouchableWithoutFeedback>
                 <FontAwesome 
                   name='globe'
                   size={20}

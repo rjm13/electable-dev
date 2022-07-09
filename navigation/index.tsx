@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,7 +15,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ElectionScreen from '../screens/ElectionScreen';
-import QuestionsScreen from '../screens/QuestionsScreen';
+import TopicsScreen from '../screens/TopicsScreen';
 import VideoFeed from '../screens/VideoFeedScreen';
 import NewsFeed from '../screens/NewsFeedScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -41,7 +41,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} options={{ headerShown: false }} />
+      {/* <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} options={{ headerShown: false }} /> */}
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
@@ -86,7 +86,15 @@ function BottomTabNavigator() {
         component={VideoFeed}
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <FontAwesome style={{marginTop: -10}} name="coffee" color={color} size={36}/>,
+          tabBarIcon: ({ color }) => <FontAwesome5 style={{marginTop: -10}} name="kiwi-bird" color={color} size={32}/>,
+        }}
+      />
+      <BottomTab.Screen
+        name="Topics"
+        component={TopicsScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <FontAwesome5 style={{marginTop: -10}} name="egg" color={color} size={32}/>,
         }}
       />
       <BottomTab.Screen
