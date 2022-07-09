@@ -10,7 +10,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { Text, View } from '../components/Themed';
 
-const VideoFeed = () => {
+const VideoFeed = ({navigation}:any) => {
 
   const SCREEN_HEIGHT = Dimensions.get('window').height
 
@@ -70,7 +70,7 @@ const VideoFeed = () => {
       <TouchableWithoutFeedback onPress={() => setOptionsVis(!optionsVis)}>
         <View style={{flexDirection: 'row', backgroundColor: '#141414a5', position: 'absolute', top: 0, paddingTop: 40, width: '100%'}}>
         <View style={{backgroundColor: 'transparent', marginLeft: 10}}>
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={() => navigation.navigate('QuestionsScreen')}>
                 <FontAwesome 
                   name='globe'
                   size={20}

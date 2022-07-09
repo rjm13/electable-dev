@@ -15,6 +15,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ElectionScreen from '../screens/ElectionScreen';
+import QuestionsScreen from '../screens/QuestionsScreen';
 import VideoFeed from '../screens/VideoFeedScreen';
 import NewsFeed from '../screens/NewsFeedScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -40,7 +41,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
