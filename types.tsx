@@ -31,6 +31,23 @@ export type RootTabParamList = {
   Topics: undefined;
 };
 
+export type TabOneParamList = {
+  ElectionsHome: undefined;
+};
+
+export type TabTwoParamList = {
+  VideoFeedHome: undefined;
+};
+
+export type TabThreeParamList = {
+  TopicsHome: undefined;
+  Topic: undefined;
+};
+
+export type TabFourParamList = {
+  NewsFeedHome: undefined;
+};
+
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>

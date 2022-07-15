@@ -12,7 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { Text, View } from '../components/Themed';
 
-const QuestionsScreen = () => {
+const QuestionsScreen = ({navigation} : any) => {
 
   const data = [
     {
@@ -39,7 +39,7 @@ const QuestionsScreen = () => {
 
   const Item = ({id, topic, icon} : any) => {
     return (
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate("Topic")}>
          <View style={{alignItems: 'center', backgroundColor: '#f0f0f0', width: '44%', borderRadius: 10, borderColor: 'gray', borderWidth: 1, paddingVertical: 20, margin: 8}}>
           <Text style={{textAlign: 'center', textTransform: 'capitalize', fontWeight: 'bold'}}>
             {topic}

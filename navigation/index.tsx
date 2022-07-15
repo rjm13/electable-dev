@@ -13,13 +13,15 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
+import TopicScreen from '../screens/Topic';
 import ElectionScreen from '../screens/ElectionScreen';
 import TopicsScreen from '../screens/TopicsScreen';
 import VideoFeed from '../screens/VideoFeedScreen';
 import NewsFeed from '../screens/NewsFeedScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -74,7 +76,7 @@ function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name="Elections"
-        component={ElectionScreen}
+        component={ElectionsNavigator}
         options={({ navigation }: RootTabScreenProps<'Elections'>) => ({
           title: 'Elections',
           tabBarIcon: ({ color }) => <FontAwesome name="check-square-o" color={color} size={25} />,
@@ -83,7 +85,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="VideoFeed"
-        component={VideoFeed}
+        component={VideoNavigator}
         options={{
           title: '',
           tabBarIcon: ({ color }) => <FontAwesome5 style={{marginTop: -10}} name="kiwi-bird" color={color} size={32}/>,
@@ -91,7 +93,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Topics"
-        component={TopicsScreen}
+        component={TopicsNavigator}
         options={{
           title: '',
           tabBarIcon: ({ color }) => <FontAwesome5 style={{marginTop: -10}} name="egg" color={color} size={32}/>,
@@ -99,12 +101,73 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="NewsFeed"
-        component={NewsFeed}
+        component={NewsFeedNavigator}
         options={{
           title: 'News',
           tabBarIcon: ({ color }) => <FontAwesome name="newspaper-o" color={color} size={25}/>,
         }}
       />
     </BottomTab.Navigator>
+  );
+}
+
+const ElectionsStack = createNativeStackNavigator<TabOneParamList>();
+
+function ElectionsNavigator() {
+  return (
+    <ElectionsStack.Navigator>
+      <ElectionsStack.Screen
+        name="ElectionsHome"
+        component={ElectionScreen}
+        options={{ headerShown: false }}
+      />
+    </ElectionsStack.Navigator>
+  );
+}
+
+const VideoStack = createNativeStackNavigator<TabTwoParamList>();
+
+function VideoNavigator() {
+  return (
+    <VideoStack.Navigator>
+      <VideoStack.Screen
+        name="VideoFeedHome"
+        component={VideoFeed}
+        options={{ headerShown: false }}
+      />
+    </VideoStack.Navigator>
+  );
+}
+
+const TopicsStack = createNativeStackNavigator<TabThreeParamList>();
+
+function TopicsNavigator() {
+  return (
+    <TopicsStack.Navigator>
+      <TopicsStack.Screen
+        name="TopicsHome"
+        component={TopicsScreen}
+        options={{ headerShown: false }}
+      />
+      <TopicsStack.Screen
+        name="Topic"
+        component={TopicScreen}
+        options={{ headerShown: false }}
+      />
+    </TopicsStack.Navigator>
+  );
+}
+
+const NewsFeedStack = createNativeStackNavigator<TabFourParamList>();
+
+function NewsFeedNavigator() {
+  return (
+    <NewsFeedStack.Navigator>
+      <NewsFeedStack.Screen
+        name="NewsFeedHome"
+        component={NewsFeed}
+        options={{ headerShown: false }}
+      />
+    </NewsFeedStack.Navigator>
   );
 }
